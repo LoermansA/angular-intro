@@ -3,10 +3,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { StateService } from './services/state.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, HeaderComponent, FooterComponent],
+  // FormsModule moet hier worden geïmporteerd omdat we gebruik maken
+  // van ngModel in de template (app.component.html)
+  imports: [RouterOutlet, RouterLink, HeaderComponent, FooterComponent, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -20,9 +23,10 @@ export class AppComponent {
 
   parentUser = "Anonymous"
 
-  onKeyUp(event:any) {
-    this.parentUser = event.target.value;
-  }
+  // Deze functie is niet meer nodig, we gebruiken nu NgModel two way binding
+  // onKeyUp(event:any) {
+  //   this.parentUser = event.target.value;
+  // }
 
   onClick(event:any) {
     this.stateService.inc();

@@ -5,7 +5,15 @@
 
   <app-header></app-header>
 
-  <input type="text" (keyup)="onKeyUp($event)">
+
+  <!-- <input type="text" (keyup)="onKeyUp($event)"> -->
+  
+  <!-- Bovenstaande <input> gebruikt onKeyUp functie voor het bijwerken 
+       van de variabele parentUser in de class. We vervangen dit door onderstaande
+       notatie waarbij we gebruik maken van het 'two-way-binding' mechanisme
+       van angular: [(ngModel)]
+  -->  
+  <input type="text" [(ngModel)]="parentUser">
 
   <button routerLink="page-a" (click)="onClick($event)">Component A</button>
   <button routerLink="page-b">Component B</button>
@@ -14,5 +22,9 @@
 
   <router-outlet />
 
+  <!-- Omdat we two-way-binding gebruiken wordt in de input parameter 'user'
+   in onderstaand component app-footer automatisch bijgewerkt wanneer
+   de waarde in het input veld wijzigt en daarmee de variabele parentUser
+  -->
   <app-footer [user]="parentUser"></app-footer>
 </main>
