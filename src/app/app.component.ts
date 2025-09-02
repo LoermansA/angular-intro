@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { StateService } from './services/state.service';
 import { FormsModule } from '@angular/forms';
+import { BackendService } from './services/backend.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +16,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
 
-  constructor(private stateService: StateService) {
+  constructor(private stateService: StateService, private backendService: BackendService) {
     console.log(stateService.counter);
+    this.message = backendService.message
   }
 
   title = 'MyFirstThing';
+  message:any;
 
   parentUser = "Anonymous"
 
@@ -31,5 +34,6 @@ export class AppComponent {
   onClick(event:any) {
     this.stateService.inc();
     console.log(this.stateService.counter);
+    this.backendService.callGreeter();
   }
 }
