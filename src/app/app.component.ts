@@ -5,20 +5,20 @@ import { FooterComponent } from './components/footer/footer.component';
 import { StateService } from './services/state.service';
 import { FormsModule } from '@angular/forms';
 import { BackendService } from './services/backend.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   // FormsModule moet hier worden geïmporteerd omdat we gebruik maken
   // van ngModel in de template (app.component.html)
-  imports: [RouterOutlet, RouterLink, HeaderComponent, FooterComponent, FormsModule],
+  imports: [RouterOutlet, RouterLink, HeaderComponent, FooterComponent, FormsModule, CurrencyPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
 
   constructor(private stateService: StateService, private backendService: BackendService) {
-    console.log(stateService.counter);
-    this.message = backendService.message
+    console.log(`De waarde is ${stateService.counter()}`);
   }
 
   title = 'MyFirstThing';
@@ -30,6 +30,12 @@ export class AppComponent {
   // onKeyUp(event:any) {
   //   this.parentUser = event.target.value;
   // }
+
+  ngOnInit() {
+    console.log('In de ngOnInit functie')
+    this.message = this.backendService.message
+
+  }
 
   onClick(event:any) {
     this.stateService.inc();

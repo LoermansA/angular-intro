@@ -8,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class PageAComponent {
 
+  ngOnInit() {
+    console.log('Page A ngOnInit()')
+  }
+
+  ngOnDestroy() {
+    console.log('Page A ngOnDestroy()')
+
+  }
+
 }

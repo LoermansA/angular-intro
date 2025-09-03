@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, SimpleChanges } from '@angular/core';
 import { StateService } from '../../services/state.service';
 
 @Component({
@@ -17,5 +17,13 @@ export class FooterComponent {
   localCounter:any;
 
   user = input("Anonymous");
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (const element in changes) {
+      console.log(`Something has changed: ${element}`)
+      const change = changes[element];
+      console.log(`Changed from ${change.previousValue} to ${change.currentValue}`)
+    }
+  }
 
 }
